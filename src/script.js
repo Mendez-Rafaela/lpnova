@@ -91,3 +91,179 @@ function finishSimulatorV4() {
   const msg = encodeURIComponent(`eu vi a página de vocês e quero contratar para o meu ${selectedTypeLabel}`);
   window.open(whatsappBase + msg, '_blank');
 }
+
+
+// ── INTERSECTION OBSERVER PARA ANIMAÇÕES DE SCROLL ──
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Observar todos os elementos com classe 'reveal'
+document.addEventListener('DOMContentLoaded', function() {
+  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  revealElements.forEach(el => observer.observe(el));
+  
+  // Adicionar classes de reveal aos elementos automaticamente
+  addRevealClasses();
+});
+
+// Adicionar classes de reveal aos elementos principais
+function addRevealClasses() {
+  // Seções
+  const sections = document.querySelectorAll('section');
+  sections.forEach((section, index) => {
+    if (!section.classList.contains('reveal')) {
+      section.classList.add('reveal');
+    }
+  });
+
+  // Cards de benefícios
+  const benCards = document.querySelectorAll('.ben-card');
+  benCards.forEach(card => {
+    if (!card.classList.contains('reveal')) {
+      card.classList.add('reveal-scale');
+    }
+  });
+
+  // Cards de problemas
+  const dorCards = document.querySelectorAll('.dor-card');
+  dorCards.forEach(card => {
+    if (!card.classList.contains('reveal')) {
+      card.classList.add('reveal-scale');
+    }
+  });
+
+  // Cards de solução
+  const solCards = document.querySelectorAll('.sol-card');
+  solCards.forEach(card => {
+    if (!card.classList.contains('reveal')) {
+      card.classList.add('reveal-scale');
+    }
+  });
+
+  // Observar os novos elementos
+  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  revealElements.forEach(el => {
+    if (!el.classList.contains('active')) {
+      observer.observe(el);
+    }
+  });
+}
+
+// ── PARALLAX EFFECT NO SCROLL ──
+window.addEventListener('scroll', function() {
+  const scrolled = window.pageYOffset;
+  const parallaxElements = document.querySelectorAll('.parallax-element');
+  
+  parallaxElements.forEach(el => {
+    const yPos = scrolled * 0.5;
+    el.style.transform = `translateY(${yPos}px)`;
+  });
+});
+
+// ── EFEITO DE MOVIMENTO NO MOUSE ──
+document.addEventListener('mousemove', function(e) {
+  const mouseX = e.clientX / window.innerWidth;
+  const mouseY = e.clientY / window.innerHeight;
+  
+  const blobs = document.querySelectorAll('.blob');
+  blobs.forEach(blob => {
+    const offsetX = (mouseX - 0.5) * 20;
+    const offsetY = (mouseY - 0.5) * 20;
+    blob.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+  });
+});
+
+// ── ANIMAÇÃO DE ENTRADA PARA ELEMENTOS VISÍVEIS ──
+function animateOnScroll() {
+  const elements = document.querySelectorAll('[data-animate]');
+  
+  elements.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const elementBottom = element.getBoundingClientRect().bottom;
+    
+    if (elementTop < window.innerHeight && elementBottom > 0) {
+      element.classList.add('animated');
+    }
+  });
+}
+
+window.addEventListener('scroll', animateOnScroll);
+
+// ── SMOOTH SCROLL ENHANCEMENT ──
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href !== '#') {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  });
+});
+
+// ── DETECTAR QUANDO ELEMENTOS ENTRAM NA VIEWPORT ──
+function setupScrollAnimations() {
+  const animatedElements = document.querySelectorAll('.ben-card, .dor-card, .sol-card, .form-container');
+  
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+  
+  animatedElements.forEach(el => scrollObserver.observe(el));
+}
+
+// Executar quando o DOM estiver pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupScrollAnimations);
+} else {
+  setupScrollAnimations();
+}
+
+// ── EFEITO DE CONTADOR PARA NÚMEROS ──
+function animateCounter(element, target, duration = 2000) {
+  let current = 0;
+  const increment = target / (duration / 16);
+  
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      element.textContent = target;
+      clearInterval(timer);
+    } else {
+      element.textContent = Math.floor(current);
+    }
+  }, 16);
+}
+
+// ── EFEITO DE FADE IN PARA IMAGENS ──
+const images = document.querySelectorAll('img');
+images.forEach(img => {
+  img.addEventListener('load', function() {
+    this.style.opacity = '1';
+  });
+  img.style.opacity = '0';
+  img.style.transition = 'opacity 0.5s ease-in-out';
+});
