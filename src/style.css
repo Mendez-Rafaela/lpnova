@@ -270,31 +270,99 @@ nav {
 /* ── RESOLUÇÃO ── */
 #resolucao { background: var(--preto2); padding: 100px 0; }
 
-.steps {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+.section-sub {
+  color: rgba(255,255,255,.5); font-size: 16px; line-height: 1.7;
+  max-width: 580px; margin: 0 auto 56px;
 }
-.step {
-  background: rgba(255, 255, 255, .03);
-  border: 1px solid rgba(255, 255, 255, .07);
-  border-radius: var(--radius); padding: 32px 24px;
-  text-align: center;
-  transition: all .25s;
-  position: relative; overflow: hidden;
+
+.sol-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px; margin-bottom: 24px;
 }
-.step-num {
-  font-family: 'Montserrat', sans-serif; font-size: 64px; font-weight: 900;
-  color: rgba(60, 194, 59, .12); line-height: 1;
-  position: absolute; top: 10px; right: 16px;
+
+.sol-card {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius); padding: 28px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: border-color .25s;
 }
-.step-icon {
-  width: 60px; height: 60px; border-radius: 50%;
-  background: rgba(60, 194, 59, .1); border: 1px solid rgba(60, 194, 59, .3);
+.sol-card:hover { border-color: rgba(60,194,59,.4); }
+
+.sol-card-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+}
+.sol-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(60,194,59,.12); border: 1px solid rgba(60,194,59,.25);
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px; font-size: 24px;
+  font-size: 18px; color: var(--verde);
 }
-.step h3 { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-.step p { color: rgba(255, 255, 255, .5); font-size: 14px; line-height: 1.6; }
+.sol-num {
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,.2); letter-spacing: 1.5px;
+}
+
+.sol-pills { display: flex; align-items: center; gap: 8px; }
+.pill-bad {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px;
+  color: #ff6b6b; background: rgba(255,70,70,.12); border: 1px solid rgba(255,70,70,.2);
+  padding: 3px 9px; border-radius: 4px;
+}
+.pill-good {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--verde); background: rgba(60,194,59,.1); border: 1px solid rgba(60,194,59,.25);
+  padding: 3px 9px; border-radius: 4px;
+}
+.pill-arrow { font-size: 12px; color: rgba(255,255,255,.25); }
+
+.sol-problem {
+  font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.6;
+  padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.sol-problem strong {
+  display: block; font-size: 14px; font-weight: 700;
+  color: rgba(255,255,255,.75); margin-bottom: 6px;
+}
+
+.sol-solution { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.6; }
+.sol-solution strong {
+  display: block; font-size: 14px; font-weight: 700;
+  color: var(--branco); margin-bottom: 6px;
+}
+
+.sol-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600;
+  color: var(--verde); background: rgba(60,194,59,.1);
+  border: 1px solid rgba(60,194,59,.2);
+  padding: 4px 10px; border-radius: 100px;
+}
+.chip i { font-size: 11px; }
+
+.sol-strip {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  background: rgba(60,194,59,.06); border: 1px solid rgba(60,194,59,.15);
+  border-radius: var(--radius); padding: 24px 32px; margin-top: 8px;
+}
+.sol-strip-text strong {
+  display: block; font-family: 'Montserrat', sans-serif;
+  font-size: 16px; font-weight: 700; margin-bottom: 4px;
+}
+.sol-strip-text span { font-size: 14px; color: rgba(255,255,255,.5); }
+.sol-strip-btn {
+  flex-shrink: 0; background: var(--verde); color: #000;
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px;
+  padding: 12px 28px; border-radius: 100px; text-decoration: none;
+  transition: all .2s; white-space: nowrap;
+}
+.sol-strip-btn:hover { background: var(--verde-brilho); transform: scale(1.03); }
+
+@media (max-width: 700px) {
+  .sol-grid { grid-template-columns: 1fr; }
+  .sol-strip { flex-direction: column; text-align: center; }
+}
 
 /* ── FORMULÁRIO ── */
 #contato { background: var(--preto); padding: 100px 0; }
