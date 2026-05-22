@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toque.ai – Portaria Digital para Condomínios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="https://wa.me/5511940018352" target="_blank" class="floating-wa">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<nav>
+  <div class="logo">
+    <img src="/src/assets/Logo (1).jpg" alt="ToqueAI Logo">
+  </div>
+  <a href="#simulador-section" class="nav-cta">
+    <i class="fa-solid fa-calculator"></i> SIMULAR AGORA
+  </a>
+</nav>
+
+<!-- SEÇÃO 1: VÍDEO -->
+<section id="video-section">
+  <div class="container">
+    <div class="video-wrapper">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/GAJAzbCtly0?autoplay=1&mute=1&loop=1&playlist=GAJAzbCtly0" title="ToqueAi Video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+      <div class="video-text">
+        <div class="tag-pill">Tecnologia & Segurança</div>
+        <h1>A portaria do <em>futuro</em>, hoje.</h1>
+        <p>Transforme a gestão de acessos do seu imóvel com inteligência artificial e controle total na palma da sua mão.</p>
+        <ul class="feature-list">
+          <li><i class="fa-solid fa-circle-check"></i> <span><strong>Acesso via QR Code:</strong> Praticidade para moradores e convidados.</span></li>
+          <li><i class="fa-solid fa-circle-check"></i> <span><strong>Interfonia na Nuvem:</strong> Atenda de qualquer lugar do mundo.</span></li>
+          <li><i class="fa-solid fa-circle-check"></i> <span><strong>Redução de Custos:</strong> Economia real na taxa condominial.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 2: QUALIDADES -->
+<section id="qualidades">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag-pill">Diferenciais</div>
+      <h2>Por que escolher a <em>ToqueAí</em>?</h2>
+    </div>
+    <div class="ben-grid">
+      <div class="ben-card">
+        <div class="ben-icon">🚀</div>
+        <h3>Instalação Rápida</h3>
+        <p>Sem quebra-quebra. Nossa tecnologia é híbrida e se adapta à sua infraestrutura.</p>
+      </div>
+      <div class="ben-card">
+        <div class="ben-icon">🛡️</div>
+        <h3>Segurança Máxima</h3>
+        <p>Registros de entrada e saída com foto e horário em tempo real no aplicativo.</p>
+      </div>
+      <div class="ben-card">
+        <div class="ben-icon">💰</div>
+        <h3>Economia</h3>
+        <p>Elimine custos com manutenção de cabos e interfones antigos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 3: SIMULADOR -->
+<section id="simulador-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag-pill">Interativo</div>
+      <h2>Simulador de <em>Projeto</em></h2>
+    </div>
+    <div class="sim-container">
+
+      <!-- Passo Inicial -->
+      <div class="sim-step active" id="step-start">
+        <div class="triagem-card">
+          <h3 class="sim-title">Descubra a solução ideal para você</h3>
+          <button class="sim-start-btn" onclick="nextStep('step-1')">Simule agora mesmo</button>
+        </div>
+      </div>
+
+      <!-- Passo 1: Tipo de Local -->
+      <div class="sim-step" id="step-1">
+        <div class="triagem-card">
+          <h3 class="sim-title">O seu interfone seria para:</h3>
+          <div class="sim-options">
+            <button class="sim-btn" onclick="selectType('Casa')">Casa</button>
+            <button class="sim-btn" onclick="selectType('Condominio')">Condomínio</button>
+            <button class="sim-btn" onclick="selectType('Comercio')">Comércio</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 2: Casa (Portão) -->
+      <div class="sim-step" id="step-casa">
+        <div class="triagem-card">
+          <h3 class="sim-title">Você precisa de abertura de portão?</h3>
+          <div class="sim-options">
+            <button class="sim-btn" onclick="finishCasa('com abertura de portão')">Sim</button>
+            <button class="sim-btn" onclick="finishCasa('sem abertura de portão')">Não</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 3: Condomínio (Tipo) -->
+      <div class="sim-step" id="step-condo">
+        <div class="triagem-card">
+          <h3 class="sim-title">Seu condomínio é de:</h3>
+          <div class="sim-options">
+            <button class="sim-btn" onclick="goToSimulator('Condomínio de Casas')">Casas</button>
+            <button class="sim-btn" onclick="goToSimulator('Condomínio de Apartamentos')">Apartamentos</button>
+            <button class="sim-btn" onclick="goToSimulator('Condomínio de Flats')">Flats</button>
+            <button class="sim-btn" onclick="goToSimulator('Condomínio de Kitnets')">Kitnets</button>
+            <button class="sim-btn" onclick="goToSimulator('Condomínio de Empresas')">Empresas</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 4: Comércio (Tipo) -->
+      <div class="sim-step" id="step-comercio">
+        <div class="triagem-card">
+          <h3 class="sim-title">Seu comércio é um:</h3>
+          <div class="sim-options">
+            <button class="sim-btn" onclick="goToSimulator('Comércio tipo Salão comercial')">Salão comercial</button>
+            <button class="sim-btn" onclick="goToSimulator('Comércio tipo Galpão')">Galpão</button>
+            <button class="sim-btn" onclick="goToSimulator('Comércio tipo Sala')">Sala</button>
+            <button class="sim-btn" onclick="goToSimulator('Comércio tipo Coworking')">Coworking</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo Final: O SIMULADOR EXATO -->
+      <div class="sim-step" id="step-calculator">
+        <div class="simulador-v4">
+          <div class="topo">
+            <h3 id="sim-header-title">SIMULE SEU PROJETO</h3>
+          </div>
+          <div class="valor">
+            <small>R$</small>
+            <strong id="valor-v4">89,90</strong>
+            <p>por mês</p>
+          </div>
+          <div class="label-apartamentos">Apartamento/Casas/Salas</div>
+          <div class="numero-apartamentos" id="unidades-v4">25</div>
+          <div class="slider-area">
+            <input type="range" min="1" max="200" value="25" id="slider-v4">
+            <div class="marcas">
+              <span>1</span>
+              <span>100</span>
+              <span>200</span>
+            </div>
+          </div>
+          <div class="porte" id="porte-v4">
+            Porte: <span>Pequeno</span>
+          </div>
+          <div class="toquebox">
+            <label class="checkbox-container">
+              <input type="checkbox" id="toqueBox-v4">
+              <span class="checkmark"></span>
+              <div class="texto-box">
+                <strong>Você quer incluir o Toque Box?</strong>
+                <p>Abertura de até 2 portões no valor de R$ 33,90 mensais por 12 meses.</p>
+              </div>
+            </label>
+          </div>
+          <div class="alerta" id="alerta-v4">
+            Para condomínios maiores que 200 unidades, clique no botão abaixo e solicite uma proposta atualizada.
+          </div>
+          <button class="whatsapp-btn" onclick="finishSimulatorV4()">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Contrate agora pelo WhatsApp clicando aqui</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 4: PROBLEMAS -->
+<section id="problemas">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag-pill">Cenários Reais</div>
+      <h2>Você sofre com esses <em>problemas</em>?</h2>
+    </div>
+    <div class="dores-grid">
+      <div class="dor-card">
+        <div class="dor-icon">📞</div>
+        <h3>Interfone Quebrado</h3>
+        <p>Moradores perdem encomendas porque o interfone não tocou ou estava mudo.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-icon">💸</div>
+        <h3>Manutenção Cara</h3>
+        <p>Gastos infinitos com troca de fiação e aparelhos que estragam com a chuva.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-icon">🔓</div>
+        <h3>Insegurança</h3>
+        <p>Não saber quem entrou ou saiu, ou deixar o portão aberto por descuido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 5: COMO RESOLVER -->
+<section id="resolucao">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag-pill">Solução</div>
+      <h2>Como resolvemos <em>tudo isso</em>?</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <h3>Nuvem Total</h3>
+        <p>O sinal vai direto para o celular. Sem fios, sem limites de distância.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+        <h3>App Intuitivo</h3>
+        <p>Abra o portão e gere convites com um toque na tela do smartphone.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <h3>Histórico 24h</h3>
+        <p>Tudo fica gravado. Segurança e transparência para todos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 6: FORMULÁRIO -->
+<section id="contato">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag-pill">Personalizado</div>
+      <h2>Projeto <em>Dedicado</em></h2>
+      <p>Preencha abaixo para receber um contato de um especialista.</p>
+    </div>
+    <div class="form-container">
+      <form action="#">
+        <div class="form-group">
+          <label>Nome Completo</label>
+          <input type="text" placeholder="Seu nome aqui...">
+        </div>
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input type="tel" placeholder="(11) 99999-9999">
+        </div>
+        <div class="form-group">
+          <label>Sobre o Projeto</label>
+          <textarea rows="4" placeholder="Conte um pouco sobre sua necessidade..."></textarea>
+        </div>
+        <button type="submit" class="form-btn">Solicitar Contato Especialista</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="logo">
+      <img src="Logo__1_.jpg" alt="ToqueAI Logo">
+    </div>
+    <p>&copy; 2024 ToqueAí Portaria Digital. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
