@@ -267,3 +267,243 @@ images.forEach(img => {
   img.style.opacity = '0';
   img.style.transition = 'opacity 0.5s ease-in-out';
 });
+
+
+// ── SCROLL PROGRESS BAR ──
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  
+  let progressBar = document.querySelector('.scroll-progress');
+  if (!progressBar) {
+    progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.body.appendChild(progressBar);
+  }
+  
+  progressBar.style.width = scrollPercent + '%';
+}
+
+window.addEventListener('scroll', updateScrollProgress);
+
+// ── STICKY HEADER COM VIDRO ──
+function updateStickyHeader() {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 100) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+}
+
+window.addEventListener('scroll', updateStickyHeader);
+
+// ── GLOW EFFECT NO MOUSE ──
+document.addEventListener('mousemove', function(e) {
+  const buttons = document.querySelectorAll('.nav-cta, .sim-start-btn, .form-btn, .sol-strip-btn');
+  
+  buttons.forEach(button => {
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const distance = Math.sqrt(x * x + y * y);
+    const maxDistance = Math.sqrt(rect.width * rect.width + rect.height * rect.height);
+    
+    if (distance < maxDistance + 100) {
+      const intensity = (1 - distance / (maxDistance + 100)) * 0.5;
+      button.style.boxShadow = `0 0 ${20 + intensity * 30}px rgba(60, 194, 59, ${0.4 + intensity * 0.6})`;
+    }
+  });
+});
+
+// ── ANIMAÇÃO DE CARDS AO ENTRAR NA VIEWPORT ──
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.ben-card, .dor-card, .sol-card');
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    cardObserver.observe(card);
+  });
+});
+
+// ── EFEITO PARALLAX APRIMORADO ──
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const parallaxElements = document.querySelectorAll('.video-embed, section');
+  
+  parallaxElements.forEach((el, index) => {
+    if (index % 2 === 0) {
+      const yPos = scrolled * 0.3;
+      el.style.transform = `translateY(${yPos}px)`;
+    }
+  });
+});
+
+// ── ANIMAÇÃO DE NÚMEROS (CONTADOR) ──
+function animateCounter(element, target, duration = 2000) {
+  let current = 0;
+  const increment = target / (duration / 16);
+  const startTime = Date.now();
+  
+  function update() {
+    const elapsed = Date.now() - startTime;
+    if (elapsed < duration) {
+      current = Math.floor((elapsed / duration) * target);
+      element.textContent = current;
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = target;
+    }
+  }
+  
+  update();
+}
+
+// Iniciar contadores quando entram na viewport
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.animated) {
+      const target = parseInt(entry.target.textContent);
+      if (!isNaN(target)) {
+        animateCounter(entry.target, target);
+        entry.target.dataset.animated = 'true';
+      }
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const trustItems = document.querySelectorAll('.trust-item strong');
+  trustItems.forEach(item => {
+    const text = item.textContent;
+    if (text.includes('+') || text.includes('%')) {
+      const number = parseInt(text);
+      if (!isNaN(number)) {
+        counterObserver.observe(item);
+      }
+    }
+  });
+});
+
+// ── RIPPLE EFFECT NOS BOTÕES ──
+function createRipple(event) {
+  const button = event.currentTarget;
+  const ripple = document.createElement('span');
+  
+  const rect = button.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = event.clientX - rect.left - size / 2;
+  const y = event.clientY - rect.top - size / 2;
+  
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  ripple.classList.add('ripple');
+  
+  button.appendChild(ripple);
+  
+  setTimeout(() => ripple.remove(), 600);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.sim-start-btn, .form-btn, .sol-strip-btn');
+  buttons.forEach(button => {
+    button.addEventListener('click', createRipple);
+  });
+});
+
+// ── SMOOTH SCROLL ENHANCEMENT ──
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href !== '#') {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  });
+});
+
+// ── FADE IN PARA IMAGENS ──
+document.addEventListener('DOMContentLoaded', () => {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.6s ease-in-out';
+    
+    img.addEventListener('load', function() {
+      this.style.opacity = '1';
+    });
+    
+    if (img.complete) {
+      img.style.opacity = '1';
+    }
+  });
+});
+
+// ── EFEITO DE FOCUS NOS INPUTS ──
+document.addEventListener('DOMContentLoaded', () => {
+  const inputs = document.querySelectorAll('input, textarea');
+  
+  inputs.forEach(input => {
+    input.addEventListener('focus', function() {
+      this.style.transform = 'scale(1.02)';
+    });
+    
+    input.addEventListener('blur', function() {
+      this.style.transform = 'scale(1)';
+    });
+  });
+});
+
+// ── ANIMAÇÃO DE ENTRADA PARA SEÇÕES ──
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      sectionObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section');
+  sections.forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(40px)';
+    section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+    sectionObserver.observe(section);
+  });
+});
+
+// ── DETECÇÃO DE DISPOSITIVO PARA OTIMIZAR ANIMAÇÕES ──
+const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (isReducedMotion) {
+  document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+}

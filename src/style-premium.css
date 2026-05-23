@@ -1,0 +1,597 @@
+/* ── ESTILOS PREMIUM GLASSMORPHISM ── */
+
+/* ── VARIÁVEIS DE VIDRO ── */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
+  --gradient-primary: linear-gradient(135deg, #3CC23B, #FFFFFF);
+  --gradient-dark: linear-gradient(135deg, #1e7a1d, #3CC23B);
+}
+
+/* ── HERO SECTION PREMIUM ── */
+#video-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f3d0f 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+#video-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(60, 194, 59, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: float 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+#video-section::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(60, 194, 59, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: float 10s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+/* ── CARDS COM GLASSMORPHISM ── */
+.ben-card,
+.dor-card,
+.sol-card,
+.triagem-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ben-card::before,
+.dor-card::before,
+.sol-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(60, 194, 59, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.ben-card:hover::before,
+.dor-card:hover::before,
+.sol-card:hover::before {
+  opacity: 1;
+}
+
+.ben-card:hover,
+.dor-card:hover,
+.sol-card:hover {
+  border-color: rgba(60, 194, 59, 0.4);
+  background: rgba(60, 194, 59, 0.08);
+  backdrop-filter: blur(16px);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(60, 194, 59, 0.2);
+}
+
+/* ── TÍTULOS COM GRADIENTE ── */
+.video-text h1,
+.section-header h2 {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.video-text h1 em,
+.section-header h2 em {
+  color: #3CC23B;
+  font-style: normal;
+}
+
+/* ── BOTÕES PREMIUM COM GLOW ── */
+.nav-cta,
+.sim-start-btn,
+.form-btn,
+.sol-strip-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3CC23B, #5dff5c);
+  box-shadow: 0 0 20px rgba(60, 194, 59, 0.4);
+  transition: all 0.3s ease;
+}
+
+.nav-cta::before,
+.sim-start-btn::before,
+.form-btn::before,
+.sol-strip-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+
+.nav-cta:hover::before,
+.sim-start-btn:hover::before,
+.form-btn:hover::before,
+.sol-strip-btn:hover::before {
+  left: 100%;
+}
+
+.nav-cta:hover,
+.sim-start-btn:hover,
+.form-btn:hover,
+.sol-strip-btn:hover {
+  box-shadow: 0 0 40px rgba(60, 194, 59, 0.8);
+  transform: translateY(-2px);
+}
+
+/* ── SIMULADOR PREMIUM ── */
+.simulador-v4 {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-radius: 24px;
+}
+
+.simulador-v4 .valor strong {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── FORMULÁRIO COM VIDRO ── */
+.form-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.form-group input,
+.form-group textarea {
+  background: rgba(60, 194, 59, 0.05);
+  border: 1px solid rgba(60, 194, 59, 0.2);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  background: rgba(60, 194, 59, 0.1);
+  border-color: #3CC23B;
+  box-shadow: 0 0 20px rgba(60, 194, 59, 0.3);
+}
+
+/* ── HEADER STICKY COM VIDRO ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(60, 194, 59, 0.2);
+  transition: all 0.3s ease;
+}
+
+nav.scrolled {
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ── ANIMAÇÕES PREMIUM ── */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(60, 194, 59, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(60, 194, 59, 0.8);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.sim-start-btn {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* ── EFEITO DE SCROLL PROGRESS ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3CC23B, #5dff5c);
+  z-index: 1000;
+  transition: width 0.1s ease;
+}
+
+/* ── SEÇÕES COM DIVISOR CURVO ── */
+section {
+  position: relative;
+}
+
+section::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: inherit;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+  z-index: -1;
+}
+
+#qualidades::after {
+  background: linear-gradient(180deg, var(--preto) 0%, var(--preto2) 100%);
+}
+
+#simulador-section::after {
+  background: linear-gradient(180deg, var(--preto2) 0%, var(--preto) 100%);
+}
+
+/* ── CHIPS COM VIDRO ── */
+.chip {
+  background: var(--glass-bg);
+  border: 1px solid rgba(60, 194, 59, 0.3);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.chip:hover {
+  background: rgba(60, 194, 59, 0.15);
+  border-color: rgba(60, 194, 59, 0.6);
+  box-shadow: 0 4px 16px rgba(60, 194, 59, 0.2);
+}
+
+/* ── FEATURE LIST COM ÍCONES COLORIDOS ── */
+.feature-list li i {
+  background: linear-gradient(135deg, #3CC23B, #5dff5c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+/* ── ANIMAÇÃO DE ENTRADA SUAVE ── */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ben-card,
+.dor-card,
+.sol-card {
+  animation: slideInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.ben-card:nth-child(1) { animation-delay: 0.1s; }
+.ben-card:nth-child(2) { animation-delay: 0.2s; }
+.ben-card:nth-child(3) { animation-delay: 0.3s; }
+
+.dor-card:nth-child(1) { animation-delay: 0.1s; }
+.dor-card:nth-child(2) { animation-delay: 0.2s; }
+.dor-card:nth-child(3) { animation-delay: 0.3s; }
+
+.sol-card:nth-child(1) { animation-delay: 0.1s; }
+.sol-card:nth-child(2) { animation-delay: 0.2s; }
+.sol-card:nth-child(3) { animation-delay: 0.3s; }
+.sol-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(60, 194, 59, 0.1);
+  border-bottom: 1px solid rgba(60, 194, 59, 0.1);
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.trust-item strong {
+  color: #3CC23B;
+  font-size: 18px;
+}
+
+/* ── RESPONSIVE GLASSMORPHISM ── */
+@media (max-width: 768px) {
+  .ben-card,
+  .dor-card,
+  .sol-card {
+    backdrop-filter: blur(8px);
+  }
+
+  .simulador-v4 {
+    backdrop-filter: blur(8px);
+  }
+
+  .form-container {
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* ── SUPORTE A MOTION REDUZIDA ── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ── RIPPLE EFFECT ── */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ── TRANSIÇÕES DE INPUT ── */
+input,
+textarea {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── EFEITO HOVER NOS LINKS ── */
+a {
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #3CC23B;
+}
+
+/* ── MELHORIAS NA LEGIBILIDADE ── */
+.ben-card h3,
+.dor-card h3,
+.sol-card h3 {
+  color: #3CC23B;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.ben-card p,
+.dor-card p,
+.sol-card p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* ── MELHORIAS NO SIMULADOR ── */
+.simulador-v4 .whatsapp-btn {
+  background: linear-gradient(135deg, #3CC23B, #5dff5c);
+  box-shadow: 0 0 20px rgba(60, 194, 59, 0.4);
+  transition: all 0.3s ease;
+}
+
+.simulador-v4 .whatsapp-btn:hover {
+  box-shadow: 0 0 40px rgba(60, 194, 59, 0.8);
+  transform: translateY(-2px);
+}
+
+/* ── MELHORIAS NA NAVEGAÇÃO ── */
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ── EFEITO HOVER NOS CARDS ── */
+.ben-card,
+.dor-card,
+.sol-card {
+  position: relative;
+}
+
+.ben-card::after,
+.dor-card::after,
+.sol-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(60, 194, 59, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.ben-card:hover::after,
+.dor-card:hover::after,
+.sol-card:hover::after {
+  opacity: 1;
+}
+
+/* ── MELHORIAS NO FOOTER ── */
+footer {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(60, 194, 59, 0.2);
+}
+
+/* ── ANIMAÇÃO DE BRILHO CONTÍNUO ── */
+@keyframes continuousGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(60, 194, 59, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(60, 194, 59, 0.6);
+  }
+}
+
+.sim-start-btn {
+  animation: continuousGlow 2.5s ease-in-out infinite;
+}
+
+/* ── EFEITO DE PROFUNDIDADE ── */
+.ben-card,
+.dor-card,
+.sol-card {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ── MELHORIAS NA RESPONSIVIDADE ── */
+@media (max-width: 1024px) {
+  .ben-card,
+  .dor-card,
+  .sol-card {
+    backdrop-filter: blur(10px);
+  }
+  
+  .video-text h1,
+  .section-header h2 {
+    font-size: clamp(24px, 4vw, 48px);
+  }
+}
+
+@media (max-width: 768px) {
+  .trust-bar {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .trust-item {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .ben-card,
+  .dor-card,
+  .sol-card {
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* ── MELHORIAS NA ACESSIBILIDADE ── */
+@media (prefers-contrast: more) {
+  .ben-card,
+  .dor-card,
+  .sol-card {
+    border-color: rgba(60, 194, 59, 0.5);
+  }
+  
+  .video-text h1,
+  .section-header h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ── DARK MODE OTIMIZADO ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(60, 194, 59, 0.15);
+  }
+}
+
+/* ── ANIMAÇÃO DE SCROLL SUAVE ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── MELHORIAS NO FORMULÁRIO ── */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.3s ease;
+}
+
+.form-group input:focus::placeholder,
+.form-group textarea:focus::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── EFEITO DE BORDA GRADIENTE ── */
+.sol-card {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.sol-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(60, 194, 59, 0.3), rgba(60, 194, 59, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.sol-card:hover::before {
+  opacity: 1;
+}
